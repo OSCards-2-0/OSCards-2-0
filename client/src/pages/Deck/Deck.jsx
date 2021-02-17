@@ -34,7 +34,7 @@ class Deck extends Component {
     // fetch(`/deck/delete/${id}`, {method: 'DELETE'})
     axios.delete(`/deck/delete/${id}`, { data: { source: id } })
       .then(deletedNum => {
-        console.log(`Successfully deleted ${deletedNum} card[s]`);
+        console.log(`Successfully deleted ${deletedNum.data} card[s]`);
         const {deckNumber} = this.props.location.state;
 
         axios.get(`/deck/${deckNumber}`)

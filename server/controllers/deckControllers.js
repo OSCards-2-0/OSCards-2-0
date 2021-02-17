@@ -30,29 +30,6 @@ deckController.readDeckOfCards = (req, res, next) => {
 deckController.deleteCard = (req, res, next) => {
   const { cardId } = req.params;
 
-  // try {
-  //   const result = CardModel.deleteOne({ _id: `${cardId}` });
-  //   console.log('TESTING', result);
-  //   res.locals.count = result;
-  //   return next()
-  // } catch (err) {
-  //   console.error(err);
-  // }
-
-
-
-  // const query = CardModel.deleteOne({ _id: `${cardId}` });
-  // const promise = query.exec();
-  // promise
-  //   .then(data => {
-  //     res.locals.count = data;
-  //     console.log('TESTING RES.LOCALS.COUNT', res.locals.count);
-  //     next();
-  //   })
-  //   .catch(() => next(new Error('Error in readDeckOfCards read method')));
-
-
-
   CardModel.deleteOne({ _id: `${cardId}` })
     .then(data => {
       res.locals.count = data.n;
