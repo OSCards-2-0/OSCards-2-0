@@ -10,7 +10,7 @@ require('dotenv').config();
 // creation of express instance
 const app = express();
 const PORT = 3000;
-const mongoURI = 'mongodb+srv://coleredfearn:pebble37@cluster0.jo3mv.mongodb.net/<OSCards>?retryWrites=true&w=majority';
+const mongoURI = `${process.env.MONGO_URI}`;
 
 // connect to instance of mongodb atlas
 mongoose
