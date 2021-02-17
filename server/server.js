@@ -10,7 +10,7 @@ require('dotenv').config();
 // creation of express instance
 const app = express();
 const PORT = 3000;
-const mongoURI = `${process.env.MONGO_URI}`;
+const mongoURI = 'mongodb+srv://coleredfearn:pebble37@cluster0.jo3mv.mongodb.net/<OSCards>?retryWrites=true&w=majority';
 
 // connect to instance of mongodb atlas
 mongoose
@@ -32,7 +32,9 @@ if (process.env.NODE_ENV === 'production') {
 // instantiate router(s) for data calls
 const cardRouter = require('./routes/cardRoutes.js');
 const deckRouter = require('./routes/deckRoutes.js');
+//const userRouter = require('./routes/userRoutes.js')
 
+// app.use('/user', userRouter);
 app.use('/card', cardRouter);
 app.use('/deck', deckRouter);
 
