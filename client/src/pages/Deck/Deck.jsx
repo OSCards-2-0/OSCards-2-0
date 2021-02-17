@@ -8,10 +8,10 @@ import axios from 'axios';
 // upon component did mount GET all cards in deck 1
 class Deck extends Component {
   constructor(props) {
-      super(props);
-      this.state = {
-          deck: [],
-      }
+    super(props);
+    this.state = {
+      deck: [],
+    }
   }
      
   componentDidMount() {
@@ -26,7 +26,6 @@ class Deck extends Component {
       .catch((err) => {
         console.log("err: ", err);
     })
-
   }
   
   render(){
@@ -38,7 +37,6 @@ class Deck extends Component {
     
     const inputArray = this.state.deck.data || [];
     console.log('input array', inputArray)
-
     
     inputArray.map((current, i) => {
         componentsToRender.push(
@@ -53,12 +51,11 @@ class Deck extends Component {
         )
     })
     return (
-        <div className="cards">
-            {componentsToRender}
-        </div>
-
-)
-}
+      <div className="cards">
+        {componentsToRender}
+      </div>
+    )
+  }
 }
 
 
