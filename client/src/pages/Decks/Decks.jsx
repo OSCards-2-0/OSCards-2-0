@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import "./Decks.css";
-import axios from 'axios';
 
 
   // create a page to view all deck options, and create a get request to our DB
@@ -21,7 +20,7 @@ class Decks extends Component {
             state: {
               deckNumber: `${arr[i]}`
             }
-          }} 
+          }}
             className="btn btn-primary">Enter Deck</Link>
         </div>
       )
