@@ -19,5 +19,9 @@ cardRouter.delete('/delete/:cardId', cardController.deleteCard, (req, res) => {
 })
 
 
+// directs patch request for the selected cardId
+cardRouter.patch('/patch/:cardId', cardController.patchCard, (req, res) => {
+  res.status(200).json(res.locals.patchedCard);
+})
 
 module.exports = cardRouter;
