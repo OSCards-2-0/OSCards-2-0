@@ -8,9 +8,9 @@ class AddCard extends Component {
     super(props);
   // set our state to empty value to be updated in the forms rendered below
     this.state = {
-        term: '',
-        definition: '',
-        deck: 0
+      term: '',
+      definition: '',
+      deck: 0
     }
   // binding our functionality to 'this' to allow it to function within our component.
   this.handleSubmit = this.handleSubmit.bind(this);
@@ -81,7 +81,7 @@ class AddCard extends Component {
           </select>
         </form>
         <div className="d-flex flex-row justify-content-center align-content-center mt-3">
-          <button class="btn btn-primary" type="submit" onClick={context.handleSubmit}>+</button>
+          <button className="btn btn-primary" type="submit" onClick={context.handleSubmit}>+</button>
         </div>
       </div>
     )
