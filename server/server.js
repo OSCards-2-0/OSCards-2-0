@@ -34,7 +34,7 @@ const userRouter = require('./routes/userRoutes.js');
 const cardRouter = require('./routes/cardRoutes.js');
 const deckRouter = require('./routes/deckRoutes.js');
 
-app.use('/user', userRouter); 
+app.use('/user', userRouter);
 app.use('/card', cardRouter);
 app.use('/deck', deckRouter);
 
