@@ -12,4 +12,12 @@ cardRouter.post('/', cardController.addCard, (req, res) => {
   res.status(200).send(res.locals.newCard);
 });
 
+
+// directs delete request for the selected cardId
+cardRouter.delete('/delete/:cardId', cardController.deleteCard, (req, res) => {
+  res.status(200).json(res.locals.count);
+})
+
+
+
 module.exports = cardRouter;
