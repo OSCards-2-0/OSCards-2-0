@@ -2,12 +2,13 @@ const User = require('../Models/user');
 
 const userController = {};
 
-userController.getUser= (req, res, next) => {
+userController.getUser = (req, res, next) => {
   // deconstruct properties required in mongoose/mongo model from request.body
   const { username, password } = req.body;
   // instantiate a new card document via the mongoose model
   User.findOne({ username, password })
     .then((results) => {
+      // console.log(results);
       res.locals.user = results;
       return next();
     })

@@ -3,7 +3,7 @@
  * "Queries are Not Promises," from mongo docs: https://mongoosejs.com/docs/queries.html
  */
 
-const CardModel = require('../models/card');
+const CardModel = require('../Models/card');
 
 const deckController = {};
 
