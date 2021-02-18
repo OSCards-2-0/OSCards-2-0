@@ -25,8 +25,6 @@ deckController.readDeckOfCards = (req, res, next) => {
     .catch(() => next(new Error('Error in readDeckOfCards read method')));
 };
 
-
-
 deckController.deleteCard = (req, res, next) => {
   const { cardId } = req.params;
 
@@ -37,7 +35,6 @@ deckController.deleteCard = (req, res, next) => {
       return next();
     })
     .catch(err => next(err));
-}
-
+};
 
 module.exports = deckController;
