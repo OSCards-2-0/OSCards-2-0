@@ -30,11 +30,11 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // instantiate router(s) for data calls
+const userRouter = require('./routes/userRoutes.js');
 const cardRouter = require('./routes/cardRoutes.js');
 const deckRouter = require('./routes/deckRoutes.js');
-//const userRouter = require('./routes/userRoutes.js')
 
-// app.use('/user', userRouter);
+app.use('/user', userRouter); 
 app.use('/card', cardRouter);
 app.use('/deck', deckRouter);
 

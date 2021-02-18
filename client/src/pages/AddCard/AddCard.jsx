@@ -81,7 +81,7 @@ class AddCard extends Component {
           </select>
         </form>
         <div className="d-flex flex-row justify-content-center align-content-center mt-3">
-          <button class="btn btn-primary" type="submit" onClick={context.handleSubmit}>+</button>
+          <button className="btn btn-primary" type="submit" onClick={context.handleSubmit}>+</button>
         </div>
       </div>
     )
