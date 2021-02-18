@@ -47,7 +47,7 @@ app.get('/', (req, res) =>
 app.use('*', (req, res) => res.status(404).send('Not Found'));
 
 // create global error handler
-app.use((err, req, res) => {
-  console.log(err);
-  res.status(500).send('Internal Server Error');
+app.use((err, req, res, next) => {
+  console.log("Global error handler: ", err);
+  res.status(500).json(err);
 });

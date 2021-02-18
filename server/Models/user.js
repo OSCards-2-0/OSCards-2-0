@@ -6,7 +6,7 @@ const userSchema = new Schema ({
   password: {type: String, required: true},
  
 })
-
+userSchema.index({ username: 1}, { unique: true });
 const User = mongoose.model('User', userSchema);
  
 module.exports = User;
