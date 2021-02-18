@@ -11,8 +11,10 @@ class Deck extends Component {
     super(props);
     this.state = {
       deck: [],
+      editMode: [],
     };
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
   }
      
   componentDidMount() {
@@ -22,7 +24,8 @@ class Deck extends Component {
     axios.get(`/deck/${deckNumber}`)
       .then((res) => {
         console.log("res: ", res);
-        this.setState({deck: res});
+        const editArray = new Array(res.data.length + 1).fill(false);
+        this.setState({deck: res, editMode: editArray});
       })
       .catch((err) => {
         console.log("err: ", err);
@@ -39,13 +42,64 @@ class Deck extends Component {
 
         axios.get(`/deck/${deckNumber}`)
           .then((res) => {
-            this.setState({deck: res});
+            this.setState({...this.state, deck: res});
+          })
+          .catch((err) => {
+            console.log("err: ", err);
           })
       })
       .catch((err) => {
         console.log("err: ", err);
       })
   }
+
+
+  handleUpdate(id) {
+    let newEditMode = this.state.editMode;
+    newEditMode[id] = !newEditMode[id];
+    this.setState({
+      ...this.state,
+      editMode: newEditMode,
+    })
+    console.log(this.state)
+  }
+
+  handleAcceptUpdate(cid, id) {
+    // console.log('definition: ', this.refs.definitionInput.value)
+    // console.log('input: ', this.refs.termInput.value)
+
+    let newEditMode = this.state.editMode;
+    newEditMode[id] = !newEditMode[id];
+
+    const body = {
+      term: this.refs.termInput.value,
+      definition: this.refs.definitionInput.value,
+    };
+
+    // let v = axios.patch(`/card/patch/${cid}`, body);
+    // console.log('TESTING: ', v)
+    axios.patch(`/card/patch/${cid}`, body)
+      .then(updatedNum => {
+        console.log(`Successfully updated ${updatedNum.data} card[s]`);
+        const {deckNumber} = this.props.location.state;
+
+        axios.get(`/deck/${deckNumber}`)
+          .then((res) => {
+            this.setState({deck: res, editMode: newEditMode});
+          })
+          .catch((err) => {
+            console.log("err: ", err);
+          })
+      })
+      .catch((err) => {
+        console.log("err: ", err);
+      })
+    
+
+      console.log('testin ghere')
+  }
+
+
   
   render(){
     // iterate through the response array of objects (this.state.deck)
@@ -59,18 +113,45 @@ class Deck extends Component {
     
     inputArray.map((current, i) => {
       let cid = this.state.deck.data[i]._id;
-      componentsToRender.push(
-        <div key={cid} id={cid} className="flashcard">
-          <h5 className="card-title">{current.term}</h5>
-          <p className="card-text">{current.definition}</p>
-          <div className="d-flex flex-row justify-content-around">
-            <button type="button" className="btn btn-primary btn-sm" onClick={() => this.handleDelete(cid)}>
-              delete card
-            </button>
-            <button type="button" className="btn btn-primary btn-sm">update card</button>
+      if (this.state.editMode[i]) {
+        componentsToRender.push(
+          <div key={cid} id={cid} className="flashcard">
+            <div>
+              <input ref="termInput" className="updateInputBar" type="text" defaultValue={current.term}></input>
+            </div>
+            <div>
+              <input ref="definitionInput" className="updateInputBar" type="text" defaultValue={current.definition}></input>
+            </div>
+            <div className="d-flex flex-row justify-content-around">
+              <button type="button" className="btn btn-primary btn-sm" onClick={() => this.handleDelete(cid)}>
+                delete card
+              </button>
+              <button type="button" className="btn btn-primary btn-sm" onClick={() => this.handleAcceptUpdate(cid, i)}>
+                k, w/e
+              </button>
+              <button type="button" className="btn btn-primary btn-sm" onClick={() => this.handleUpdate(i)}>
+                wait nvm
+              </button>
+            </div>
           </div>
-        </div>
-      )
+        )
+      }
+      else {
+        componentsToRender.push(
+          <div key={cid} id={cid} className="flashcard">
+            <h5 className="card-title">{current.term}</h5>
+            <p className="card-text">{current.definition}</p>
+            <div className="d-flex flex-row justify-content-around">
+              <button type="button" className="btn btn-primary btn-sm" onClick={() => this.handleDelete(cid)}>
+                delete card
+              </button>
+              <button type="button" className="btn btn-primary btn-sm" onClick={() => this.handleUpdate(i)}>
+                update card
+              </button>
+            </div>
+          </div>
+        )
+      }
     })
     return (
       <div className="cards">

@@ -12,4 +12,8 @@ cardRouter.post('/', cardController.addCard, (req, res) => {
   res.status(200).send(res.locals.newCard);
 });
 
+cardRouter.patch('/patch/:cardId', cardController.patchCard, (req, res) => {
+  res.status(200).json(res.locals.patchedCard);
+})
+
 module.exports = cardRouter;
