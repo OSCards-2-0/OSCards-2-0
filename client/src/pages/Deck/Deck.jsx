@@ -80,7 +80,7 @@ class Deck extends Component {
     // console.log('TESTING: ', v)
     axios.patch(`/card/patch/${cid}`, body)
       .then(updatedNum => {
-        console.log(`Successfully updated ${updatedNum.data} card[s]`);
+        console.log(`Successfully updated ${updatedNum} card[s]`);
         const {deckNumber} = this.props.location.state;
 
         axios.get(`/deck/${deckNumber}`)
@@ -94,9 +94,6 @@ class Deck extends Component {
       .catch((err) => {
         console.log("err: ", err);
       })
-    
-
-      console.log('testin ghere')
   }
 
 

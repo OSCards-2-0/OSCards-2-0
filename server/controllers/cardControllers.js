@@ -30,6 +30,7 @@ cardController.patchCard = (req, res, next) => {
   CardModel.updateOne({_id: {$eq: cid}}, value)
     .then(result => {
       res.locals.patchedCard = result.n;
+      return next();
     })
     .catch(err => next(err));
 };
