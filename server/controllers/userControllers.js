@@ -17,12 +17,12 @@ userController.getUser = (req, res, next) => {
 
 userController.createUser = (req, res, next) => {
     const { username, password } = req.body;
-    console.log("Request body: ", req.body)
     const queryObj = {
       username: username,
       password: password,
+      decks: []
     };
-    
+
     User.create(queryObj)
       .then(results => {
         console.log('Create new user => ', results);

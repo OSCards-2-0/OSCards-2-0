@@ -15,7 +15,7 @@ function Auth() {
       e.preventDefault;
       let user = document.getElementById('exampleFormControlInput1').value;
       let pass = document.getElementById('exampleFormControlInput2').value;
-      axios.post('/user', {
+      axios.post('/user/', {
         username: user,
         password: pass,
       })
@@ -48,24 +48,24 @@ function Auth() {
            if (login === true) return <Redirect to="/home" />;
            
       return (
-            <div class="row m-0 h-100">
-            <div class="col p-0 text-center d-flex justify-content-center align-items-center display-none">
-                <img src="https://i.ibb.co/XxJfK9q/95-EA8817-E472-4822-8-DAA-83-D8-E28-C1903-4.png" class="w-100"/>
+            <div className="row m-0 h-100">
+            <div className="col p-0 text-center d-flex justify-content-center align-items-center display-none">
+                <img src="https://i.ibb.co/XxJfK9q/95-EA8817-E472-4822-8-DAA-83-D8-E28-C1903-4.png" className="w-100"/>
             </div>
-            <div class="col p-0 bg-custom d-flex justify-content-center align-items-center flex-column w-100">
-                <form class="w-75" action="#">
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput1" class="form-label">Username</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="username"
+            <div className="col p-0 bg-custom d-flex justify-content-center align-items-center flex-column w-100">
+                <form className="w-75" action="#">
+                    <div className="mb-3">
+                        <label htmlFor="exampleFormControlInput1" className="form-label">Username</label>
+                        <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="username"
                             required/>
                     </div>
-                    <div class="mb-3">
-                        <label for="exampleFormControlInput2" class="form-label">Password</label>
-                        <input  type="password" class="form-control" id="exampleFormControlInput2" placeholder="password"
+                    <div className="mb-3">
+                        <label htmlFor="exampleFormControlInput2" className="form-label">Password</label>
+                        <input  type="password" className="form-control" id="exampleFormControlInput2" placeholder="password"
                             required/>
                     </div>
-                    <button type="button" onClick={loginHandler} name="login"class="btn btn-primary btn-lg btn-block mt-3">Login Now</button>
-                    <button type="button" name="register" class="btn btn-custom btn-lg btn-block mt-3" onClick={registerHandler}>Register</button>
+                    <button type="button" onClick={loginHandler} name="login"className="btn btn-primary btn-lg btn-block mt-3">Login Now</button>
+                    <button type="button" name="register" className="btn btn-custom btn-lg btn-block mt-3" onClick={registerHandler}>Register</button>
                 </form>
             </div>
         </div>
