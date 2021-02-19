@@ -40,7 +40,6 @@ function Auth() {
         if (res.data._id) updateLogin(true);
       })
       .catch((err) => {
-        console.log(Object.entries(err));
         if (err.response.status === 420) {
           alert(`Username ${user} already exists`);
         }
@@ -73,3 +72,4 @@ function Auth() {
 };
 
 export default Auth;
+
