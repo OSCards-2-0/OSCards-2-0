@@ -40,7 +40,6 @@ function Auth() {
         if (res.data._id) updateLogin(true);
       })
       .catch((err) => {
-        console.log(Object.entries(err));
         if (err.response.status === 420) {
           alert(`Username ${user} already exists`);
         }
@@ -54,7 +53,7 @@ function Auth() {
       <div className="col p-0 text-center d-flexjustify-content-center align-items-center display-none">
         <img src="https://i.ibb.co/XxJfK9q/95-EA8817-E472-4822-8-DAA-83-D8-E28-C1903-4.png" className="w-100"/>
       </div>
-      <div className="col p-0 bg-custom d-flex justify-content-centeralign-items-center flex-column w-100">
+      <div className="col p-0 bg-custom d-flex justify-content-center align-items-center flex-column w-100">
         <form className="w-75" action="#">
           <div className="mb-3">
             <label htmlFor="exampleFormControlInput1" className="form-label">Username</label>
