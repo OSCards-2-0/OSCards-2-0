@@ -18,19 +18,19 @@ userController.getUser = (req, res, next) => {
 userController.createUser = (req, res, next) => {
   const { username, password } = req.body;
   const queryObj = {
-    username: username,
-    password: password,
+    username,
+    password,
   };
 
   User.create(queryObj)
-    .then(results => {
+    .then((results) => {
       console.log('Create new user => ', results);
       res.locals.user = results;
       return next();
     })
-    .catch(err => next({
-      err: `Error creating new user in database: ${err}`
-    }));
+    .catch((err) => {
+      next(err);
+    });
 };
 
 module.exports = userController;
