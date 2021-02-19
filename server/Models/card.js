@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose; 
 
 // create a constant card cardModel, which will be object
-const cardSchema = new mongoose.Schema ({
+const cardSchema = new Schema ({
   // term -> options numbers or strings, object add type key and required key ... REQUIRED
   term: {
     type: String,

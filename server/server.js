@@ -10,7 +10,7 @@ require('dotenv').config();
 // creation of express instance
 const app = express();
 const PORT = 3000;
-const mongoURI = `${process.env.MONGO_URI}`;
+const mongoURI = 'mongodb+srv://coleredfearn:pebble37@cluster0.jo3mv.mongodb.net/<OSCards>?retryWrites=true&w=majority';
 
 // connect to instance of mongodb atlas
 mongoose
@@ -34,20 +34,24 @@ const userRouter = require('./routes/userRoutes.js');
 const cardRouter = require('./routes/cardRoutes.js');
 const deckRouter = require('./routes/deckRoutes.js');
 
-app.use('/user', userRouter); 
+app.use('/user', userRouter);
 app.use('/card', cardRouter);
 app.use('/deck', deckRouter);
 
 // serve index.html on the route '/'
-app.get('/', (req, res) =>
-  res.status(200).sendFile(path.join(__dirname, '../client/src/index.html'))
-);
+app.get('/', (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, '../client/src/index.html'));
+});
 
 // create 404 error
 app.use('*', (req, res) => res.status(404).send('Not Found'));
 
 // create global error handler
-app.use((err, req, res) => {
-  console.log(err);
-  res.status(500).send('Internal Server Error');
+app.use((err, req, res, next) => {
+  // console.log(err.code);
+  if (err.code === 11000 && err.name === 'MongoError') {
+    res.status(420).send('Username Exists');
+  }
+  // console.log(err);
+   else res.status(500).send('Internal Server Error');
 });
