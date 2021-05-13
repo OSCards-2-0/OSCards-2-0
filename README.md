@@ -89,4 +89,4 @@ git push origin feature/fooBar
 - Serve deck data to the frontend as a doubly-linked-list to enable "quiz" mode. Doubly-linked-list data structure will enable forward and backward progression through a queue of cards. 
 - Randomize the order of cards in "quiz" mode. 
 
-https://github.com/OSLearning/OSCards
+https://github.com/OSCards-2-0/OSCards-2-0
